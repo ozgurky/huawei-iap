@@ -8,9 +8,11 @@ use Psr\Http\Message\ResponseInterface;
 use Huawei\IAP\Exception\InvalidValidationResponseException;
 use Huawei\IAP\Request\AbstractVerificationRequest;
 use Huawei\IAP\Request\OrderVerificationRequest;
+use Huawei\IAP\Request\SubscriptionStopRequest;
 use Huawei\IAP\Request\SubscriptionVerificationRequest;
 use Huawei\IAP\Response\OrderResponse;
 use Huawei\IAP\Response\SubscriptionResponse;
+use Huawei\IAP\Response\SubscriptionStopResponse;
 
 class Validator
 {
@@ -162,6 +164,10 @@ class Validator
 
         if ($request instanceof SubscriptionVerificationRequest) {
             return new SubscriptionResponse($json);
+        }
+
+        if ($request instanceof SubscriptionStopRequest) {
+            return new SubscriptionStopResponse($json);
         }
 
         if ($request instanceof OrderVerificationRequest) {
